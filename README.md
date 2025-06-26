@@ -18,7 +18,7 @@ pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://
 ```
 That way, dependencies come from real PyPI, and your package from TestPyPI.
 
-(PyPI)
+(PyPI: ignore this, this will be used after making repository public)
 ```bash
 pip install rfi-fileparser
 ```
@@ -154,9 +154,11 @@ Example:
         "alt": 9098.28,
         "nic": 0,
         "time": 1740859918.787
-      }
-    }
-  ]
+      },
+    },
+    ...
+  ],
+  ...
 }
 ```
 
@@ -189,8 +191,10 @@ Example:
         "nic": 0,
         "time": 1740868558.257
       }
-    }
-  ]
+    },
+    ...
+  ],
+  ...
 }
 ```
 
@@ -230,7 +234,9 @@ Example:
       "h3Index": "841f53bffffffff",
       "spoofedFlightCount": 3,
       "seenAircraftCount": 19
-    }
-  ]
+    },
+    ...
+  ],
+  ...
 }
 ```
