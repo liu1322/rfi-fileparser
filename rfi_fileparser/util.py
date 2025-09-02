@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 
 def is_valid_date(input_str):
-    start_time = datetime.strptime("2023/01/01", "%Y/%m/%d")
+    start_time = datetime.strptime("2022/01/01", "%Y/%m/%d")
     two_days_ago = datetime.now() - timedelta(days=2)
     end_time = two_days_ago.strftime("%Y/%m/%d")
     try:
@@ -10,7 +10,7 @@ def is_valid_date(input_str):
         if start_time <= parsed_date <= two_days_ago:
             return True
         else:
-            print(f"Date '{input_str}' is outside the allowed range (2023/01/01 to {end_time}).")
+            print(f"Date '{input_str}' is outside the allowed range (2022/01/01 to {end_time}).")
             return False
     except ValueError:
         # Raised if format is wrong or date is invalid
