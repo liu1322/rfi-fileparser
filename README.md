@@ -1,61 +1,65 @@
 # GNSS Interference Monitoring Data Download Tool
+[![PyPI](https://img.shields.io/pypi/v/rfi-fileparser.svg)](https://pypi.org/project/rfi-fileparser/)
+[![License](https://img.shields.io/github/license/zixi-liu/rfi-fileparser.svg)](LICENSE)
 
-This repository explains a Python package ***<rfi_fileparser>*** to download JSON files from GNSS Interference Monitoring Website: http://rfi.stanford.edu/. Users can specify a start date, end date, and data type (jamming, spoofing, or dashboard). 
+This repository contains the source code for the Python package **`<rfi_fileparser>`**, which provides utilities to download and visualize JSON files from the GNSS Interference Monitoring Website: http://rfi.stanford.edu/. Users can specify a start date, end date, and data type (`jamming`, `spoofing`, or `dashboard`).
 
 
 ## Installation
-
 ### Prerequisites
 * Python 3.8+ installed
 
 ### Setup
-(TestPyPI)
 
-Open a terminal (or Anaconda prompt if using that) and run:
-
-```bash
-pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple rfi-fileparser==0.6.0
-```
-That way, dependencies come from real PyPI, and your package from TestPyPI.
-
-(PyPI: ignore this, this will be used after making repository public)
 ```bash
 pip install rfi-fileparser
 ```
 
+Update periodically to get the latest features:
 
+```bash
+pip install --upgrade rfi-fileparser
+```
 
 
 
 ## Usage
-To download JSON files:
+
+### Download JSON data
+
 ```python
 from rfi_fileparser import downloader
 
-downloader.download_files("2025/03/23", "2025/03/26", "dashboard")
-downloader.download_files("2025/03/23", "2025/03/26", "jamming")
-downloader.download_files("2025/03/23", "2025/03/26", "spoofing")
+downloader.download_files("2025/04/23", "2025/04/26", "dashboard")
+downloader.download_files("2025/04/23", "2025/04/26", "jamming")
+downloader.download_files("2025/04/23", "2025/04/26", "spoofing")
 ```
-- You can ignore the warnings which is caused by bypassing https protection from our website to download the files.
-- A week of all types of data would take few minutes to download, please be patient!
-- Once code is done running, files can be found in folder "downloaded_json_files/" under your current path.
 
-To visualize Heatmaps:
+* HTTPS warnings may appear; these are safe and result from bypassing certificate checks.
+* Downloading one week of all data types may take a few minutes.
+* Files are saved under the directory `downloaded_json_files/` in the current working path.
+
+
+
+### Visualize heatmaps
+
 ```python
 from rfi_fileparser import plot_daily_heatmap, plot_hourly_heatmap
 
-plot_daily_heatmap("downloaded_json_files", "2025/03/25")
-plot_hourly_heatmap("downloaded_json_files", "2025/03/25")
+plot_daily_heatmap("downloaded_json_files", "2025/04/24")
+plot_hourly_heatmap("downloaded_json_files", "2025/04/24")
 ```
 
+### Visualize events
 
-To visualize events:
 ```python
 from rfi_fileparser import plot_jamming, plot_spoofing
 
-plot_jamming("downloaded_json_files", "2025/03/25")
-plot_spoofing("downloaded_json_files", "2025/03/25")
+plot_jamming("downloaded_json_files", "2025/04/24")
+plot_spoofing("downloaded_json_files", "2025/04/24")
 ```
+
+
 
 
 ## Data Structure 
@@ -64,12 +68,12 @@ plot_spoofing("downloaded_json_files", "2025/03/25")
 ├── dashboard
 │   ├──general.json
 │   └── 2025
-│       └── 03
+│       └── 04
 │           └── statistics.json
 ├── jamming
 │   └── 2025
-│       └── 03
-│           └── 23
+│       └── 04
+│           └── 24
 │               ├── events.json
 │               ├── heatmap.json
 │               ├── 0000
@@ -79,8 +83,8 @@ plot_spoofing("downloaded_json_files", "2025/03/25")
 │               └── ...
 └── spoofing
     └── 2025
-        └── 03
-            └── 23
+        └── 04
+            └── 24
                 ├── beforeAndDuringSpoofing.json
                 ├── duringAndAfterSpoofing.json
                 ├── events.json
@@ -92,12 +96,12 @@ plot_spoofing("downloaded_json_files", "2025/03/25")
 
 ## Data Information
 
-### 1. `jamming/2025/03/23/heatmap.json`
+### 1. `jamming/2025/04/24/heatmap.json`
 
 **→ Daily heatmap data.**
 
 
-### 2. `jamming/2025/03/23/0000/heatmap.json`
+### 2. `jamming/2025/04/24/0000/heatmap.json`
 
 **→ Hourly heatmap data.**
 
@@ -119,7 +123,7 @@ plot_spoofing("downloaded_json_files", "2025/03/25")
 
 
 
-### 3. `jamming/2025/03/23/event.json`
+### 3. `jamming/2025/04/24/event.json`
 
 **→ All jamming events detected on that day.**
 
@@ -128,7 +132,7 @@ plot_spoofing("downloaded_json_files", "2025/03/25")
 
 
 
-### 4. `spoofing/2025/03/23/beforeAndDuringSpoofing.json`
+### 4. `spoofing/2025/04/24/beforeAndDuringSpoofing.json`
 
 **→ For each spoofing event, shows the last known normal position and the first spoofed position observed for each affected flight.**
 
@@ -164,7 +168,7 @@ Example:
 
 
 
-### 5. `spoofing/2025/03/23/duringAndAfterSpoofing.json`
+### 5. `spoofing/2025/04/24/duringAndAfterSpoofing.json`
 
 **→ For each spoofing event, shows the last spoofed position and the first normal position after recovery.**
 
@@ -200,7 +204,7 @@ Example:
 
 
 
-### 6. `spoofing/2025/03/23/event.json`
+### 6. `spoofing/2025/04/24/event.json`
 
 **→ All spoofing events detected on that day.**
 
@@ -209,12 +213,12 @@ Example:
 
 
 
-### 7. `spoofing/2025/03/23/heatmap.json`
+### 7. `spoofing/2025/04/24/heatmap.json`
 
 **→ Daily heatmap of spoofing-affected region.**
 
 * **`h3Index`**: Unique index for each hexagonal cell (H3 system).
-  *(See usage example above under `jamming/2025/03/23/0000/heatmap.json`.)*
+  *(See usage example above under `jamming/2025/04/24/0000/heatmap.json`.)*
 
 * **`spoofedFlightCount`**: Number of affected aircraft within each cell, based on interpolated true paths.
 
@@ -240,3 +244,5 @@ Example:
   ...
 }
 ```
+
+
