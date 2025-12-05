@@ -1,6 +1,6 @@
 [project]
 name = "rfi_fileparser"
-version = "0.6.1"
+version = "0.6.2"
 description = "Python tools to download JSON files from rfi.stanford.edu."
 authors = [
     { name="Zixi Liu", email="liu1322@stanford.edu" }
