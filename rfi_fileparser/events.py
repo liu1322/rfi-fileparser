@@ -16,6 +16,11 @@ def generate_timeline(filepath, title):
 
         # Convert to DataFrame
         df = pd.DataFrame(data)
+
+        # Flatten the "data" dict column into its own columns
+        data_expanded = pd.json_normalize(df['data'])
+        df = pd.concat([df.drop(columns=['data']), data_expanded], axis=1)
+
         # Convert to datetime with UTC
         df['startTime'] = pd.to_datetime(df['startTime'], utc=True)
         df['endTime'] = pd.to_datetime(df['endTime'], utc=True)
@@ -61,6 +66,11 @@ def generate_map(filepath, title):
 
         # Convert to DataFrame
         df = pd.DataFrame(data)
+
+        # Flatten the "data" dict column into its own columns
+        data_expanded = pd.json_normalize(df['data'])
+        df = pd.concat([df.drop(columns=['data']), data_expanded], axis=1)
+
         df['eventId_numeric'] = df['eventId'].astype(int)
         df = df.sort_values(by='eventId_numeric')
 
@@ -106,5 +116,5 @@ def plot_spoofing(filepath, date):
         generate_map(fullpath, "Spoofing Event Locations")
 
 if __name__ == '__main__':
-    # plot_jamming("downloaded_json_files", "2025/03/05")
-    plot_spoofing("downloaded_json_files", "2025/03/05")
+    plot_jamming("..\downloaded_json_files", "2025/04/24")
+    # plot_spoofing("..\downloaded_json_files", "2025/04/24")

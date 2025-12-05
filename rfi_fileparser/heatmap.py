@@ -15,6 +15,11 @@ def generate_heatmap(filepath, title):
             data = json.load(f)
         # Convert to DataFrame
         df = pd.DataFrame(data)
+
+        # Flatten the "data" dict column into its own columns
+        data_expanded = pd.json_normalize(df['data'])
+        df = pd.concat([df.drop(columns=['data']), data_expanded], axis=1)
+
         # Filter out rows with totalAircraftCount = 0 to avoid divide-by-zero
         df = df[df['totalAircraftCount'] > 0].copy()
         # Compute ratio: lowQualityCount / totalAircraftCount
@@ -66,11 +71,13 @@ def plot_hourly_heatmap(filepath, date):
     if util.is_valid_date(date):
         subpath = date.split("/")
         allhours = [f"{hour:02}00" for hour in range(24)]
-        fullpath = [os.path.join(filepath, "jamming", *subpath, hourpath, 'heatmap.json') for hourpath in allhours]
-        for file in fullpath:
-            generate_heatmap(file, 'Hourly Low NIC Flight Percentage Heatmap')
+        for hourpath in allhours:
+            file = os.path.join(filepath, "jamming", *subpath, hourpath, "heatmap.json")
+            title = f"Hourly Low NIC Flight Percentage Heatmap  {date}  {hourpath}"
+            generate_heatmap(file, title)
+
 
 
 if __name__ == '__main__':
-    plot_daily_heatmap("..\downloaded_json_files", "2025/03/24")
-    # plot_hourly_heatmap("downloaded_json_files", "2025/03/05")
+    # plot_daily_heatmap("..\downloaded_json_files", "2025/04/24")
+    plot_hourly_heatmap("..\downloaded_json_files", "2025/04/24")
