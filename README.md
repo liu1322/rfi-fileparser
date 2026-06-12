@@ -6,6 +6,7 @@ This repository contains the source code for the Python package **`<rfi_filepars
 
 
 ## Installation
+_Last updated on Jun 11, 2026_
 ### Prerequisites
 - Python 3.8–3.11 installed.
 - `pip` (included with standard Python installations).
