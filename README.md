@@ -7,7 +7,10 @@ This repository contains the source code for the Python package **`<rfi_filepars
 
 ## Installation
 ### Prerequisites
-* Python 3.8+ installed
+- Python 3.8–3.11 installed.
+- `pip` (included with standard Python installations).
+
+> **Note:** Python 3.12 and newer are currently not supported because the required `h3==3.7.6` dependency does not provide compatible Windows wheels.
 
 ### Setup
 

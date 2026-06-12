@@ -1,13 +1,13 @@
 [project]
 name = "rfi_fileparser"
-version = "0.6.3"
+version = "0.6.4"
 description = "Python tools to download JSON files from rfi.stanford.edu."
 authors = [
     { name="Zixi Liu", email="liu1322@stanford.edu" }
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.8,<3.12"
 dependencies = [
   "requests",
   "pandas",
