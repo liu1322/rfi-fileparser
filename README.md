@@ -44,10 +44,18 @@ downloader.download_files("2025/04/23", "2025/04/26", "spoofing")
 ### Visualize heatmaps
 
 ```python
-from rfi_fileparser import plot_daily_heatmap, plot_hourly_heatmap
+from rfi_fileparser import plot_daily_heatmap, plot_hourly_heatmap, plot_aggregate_heatmap
 
 plot_daily_heatmap("downloaded_json_files", "2025/04/24")
 plot_hourly_heatmap("downloaded_json_files", "2025/04/24")
+plot_aggregate_heatmap("downloaded_json_files", "2025/03/23", "2025/04/26")
+plot_aggregate_heatmap(
+    "downloaded_json_files",
+    "2025/03/23",
+    "2025/04/26",
+    lat_range=(24.5, 49.5),
+    lon_range=(-125.0, -66.5)
+)
 ```
 
 ### Visualize events
