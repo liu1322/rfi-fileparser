@@ -1,5 +1,5 @@
 # GNSS Interference Monitoring Data Download Tool
-[![PyPI version](https://img.shields.io/pypi/v/rfi-fileparser.svg?cacheSeconds=1)](https://pypi.org/project/rfi-fileparser/)
+[![PyPI](https://img.shields.io/pypi/v/rfi-fileparser.svg)](https://pypi.org/project/rfi-fileparser/)
 [![License](https://img.shields.io/github/license/liu1322/rfi-fileparser.svg)](./LICENSE)
 
 This repository contains the source code for the Python package **`<rfi_fileparser>`**, which provides utilities to download and visualize JSON files from the GNSS Interference Monitoring Website: http://rfi.stanford.edu/. Users can specify a start date, end date, and data type (`jamming`, `spoofing`, or `dashboard`).
